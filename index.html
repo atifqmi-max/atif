@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atif · full stack dev & coder</title>
+  <!-- Font Awesome 6 (free) for clean icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(145deg, #0e0f14 0%, #1a1c25 100%);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color: #eaeef5;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    /* glass‑card effect */
+    .profile-card {
+      max-width: 1200px;
+      width: 100%;
+      background: rgba(20, 22, 32, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(90, 140, 255, 0.18);
+      border-radius: 3rem;
+      box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      padding: 2.5rem 2.2rem;
+    }
+
+    /* ===== HEADER / NAME & TITLE ===== */
+    .top-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px dashed rgba(120, 160, 255, 0.3);
+      padding-bottom: 1.5rem;
+    }
+
+    .name-title h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(130deg, #ffffff, #b2ccff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1.1;
+    }
+
+    .name-title .badge {
+      display: inline-block;
+      background: #2f3e6b;
+      padding: 0.35rem 1.2rem;
+      border-radius: 40px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #d9e6ff;
+      border: 1px solid #4b67a3;
+      margin-top: 0.4rem;
+      backdrop-filter: blur(4px);
+    }
+
+    /* music player — sleek, minimal */
+    .music-area {
+      background: rgba(12, 18, 34, 0.7);
+      border-radius: 60px;
+      padding: 0.5rem 1.2rem 0.5rem 1.8rem;
+      border: 1px solid #2c3c66;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      box-shadow: 0 6px 14px rgba(0, 5, 15, 0.6);
+    }
+
+    .music-icon {
+      font-size: 1.4rem;
+      color: #6ea8fe;
+      animation: subtlePulse 3s infinite ease;
+    }
+
+    .music-area audio {
+      height: 40px;
+      width: 220px;
+      filter: sepia(0.2) brightness(1.2) contrast(1.1);
+      border-radius: 30px;
+    }
+
+    @keyframes subtlePulse {
+      0% { opacity: 0.7; text-shadow: 0 0 2px #5f9eff; }
+      50% { opacity: 1; text-shadow: 0 0 10px #3f7eff; }
+      100% { opacity: 0.7; text-shadow: 0 0 2px #5f9eff; }
+    }
+
+    /* ===== 2‑COLUMN LAYOUT (about + contact) ===== */
+    .mid-grid {
+      display: grid;
+      grid-template-columns: 2fr 1.2fr;
+      gap: 2rem;
+      margin: 2.2rem 0 2.5rem;
+    }
+
+    /* left: my all making (work / projects) */
+    .works-section {
+      background: rgba(12, 16, 28, 0.5);
+      border-radius: 2rem;
+      padding: 1.8rem 1.8rem 2rem;
+      border: 1px solid #293454;
+      backdrop-filter: blur(8px);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.7rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: #bdd3ff;
+      border-left: 5px solid #4f8cff;
+      padding-left: 1rem;
+    }
+
+    .section-header i {
+      color: #6d9eff;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .project-item {
+      background: #181f32;
+      border-radius: 1.5rem;
+      padding: 1.2rem 0.8rem 0.8rem 1.2rem;
+      border: 1px solid #31486c;
+      transition: transform 0.2s, border-color 0.2s;
+      box-shadow: 0 8px 18px -8px #05070c;
+    }
+
+    .project-item:hover {
+      transform: translateY(-5px);
+      border-color: #6f9cff;
+      background: #1f2740;
+    }
+
+    .project-icon {
+      font-size: 2.2rem;
+      background: #253150;
+      width: 50px;
+      height: 50px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      color: #9bbaff;
+    }
+
+    .project-item h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: white;
+    }
+
+    .project-item p {
+      font-size: 0.85rem;
+      color: #a0b5da;
+      margin-top: 0.3rem;
+    }
+
+    /* right side: contact + discrimination block */
+    .contact-discrimination {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .contact-card {
+      background: rgba(12, 16, 28, 0.6);
+      border-radius: 2rem;
+      padding: 1.8rem 1.8rem 1.8rem;
+      border: 1px solid #2f3d62;
+      backdrop-filter: blur(8px);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 1.2rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #1c233a;
+      padding: 0.9rem 1.2rem;
+      border-radius: 2rem;
+      border: 1px solid #36486b;
+      transition: 0.15s;
+    }
+
+    .contact-row i {
+      width: 2rem;
+      font-size: 1.5rem;
+      color: #6d9eff;
+      text-align: center;
+    }
+
+    .contact-row span {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: #d3e0fd;
+    }
+
+    .contact-row:hover {
+      background: #252f4a;
+      border-color: #5f85d6;
+    }
+
+    /* MY DISCRIMINATION section — bold & pro */
+    .discrimination-card {
+      background: #181f33;
+      border-radius: 2rem;
+      padding: 1.8rem 2rem;
+      border: 1px solid #4d6190;
+      box-shadow: 0 0 0 1px rgba(255, 140, 140, 0.2), 0 12px 30px -15px black;
+    }
+
+    .discrimination-header {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #ffb9b9;
+      margin-bottom: 1.2rem;
+    }
+
+    .discrimination-header i {
+      color: #ff7b7b;
+    }
+
+    .discrimination-text {
+      background: #101524;
+      padding: 1.5rem;
+      border-radius: 1.5rem;
+      border-left: 6px solid #ff6b6b;
+    }
+
+    .discrimination-text p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #f0e6ff;
+    }
+
+    .discrimination-text .highlight {
+      color: #ffa7a7;
+      font-weight: 500;
+    }
+
+    .pro-equality {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-top: 1.2rem;
+    }
+
+    .pro-equality span {
+      background: #2b2f4a;
+      padding: 0.4rem 1.4rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      border: 1px solid #ff9370;
+      color: #ffc7b0;
+    }
+
+    /* ===== footer / extra music note & vibe ===== */
+    .footer-note {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+      color: #8fa3ce;
+      border-top: 1px dashed #31476b;
+      padding-top: 1.5rem;
+    }
+
+    .footer-note .small-credit i {
+      color: #6086d6;
+      margin-right: 0.3rem;
+    }
+
+    .live-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: #5effa0;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #29ff8c;
+    }
+
+    /* responsiveness */
+    @media (max-width: 800px) {
+      .mid-grid {
+        grid-template-columns: 1fr;
+      }
+      .top-header {
+        flex-direction: column;
+        align-items: start;
+        gap: 1.2rem;
+      }
+      .music-area {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .music-area audio {
+        width: 180px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .profile-card { padding: 1.8rem; }
+      .name-title h1 { font-size: 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-card">
+
+    <!-- header: Name + background music (embedded) -->
+    <div class="top-header">
+      <div class="name-title">
+        <h1>Atif</h1>
+        <span class="badge"><i class="fas fa-code" style="margin-right: 0.4rem;"></i>Full Stack Developer & Coder</span>
+      </div>
+      <div class="music-area">
+        <i class="fas fa-headphones-alt music-icon"></i>
+        <!-- background music (silent/placeholder, but functional) 
+             using a freely distributable ambient loop from pixabay (loop, low profile) -->
+        <audio controls loop autoplay>
+          <source src="https://cdn.pixabay.com/audio/2024/02/04/audio_5f3b22cf2c.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <i class="fas fa-volume-up" style="color: #5080dd; font-size: 1.2rem;"></i>
+      </div>
+    </div>
+
+    <!-- main grid: my all making (projects) + contact & discrimination -->
+    <div class="mid-grid">
+      <!-- LEFT — "my all making website" = my works / builds -->
+      <div class="works-section">
+        <div class="section-header">
+          <i class="fas fa-laptop-code"></i>
+          <span>my all making</span>
+        </div>
+        <div class="project-grid">
+          <div class="project-item">
+            <div class="project-icon"><i class="fas fa-cart-shopping"></i></div>
+            <h3>ShopFlow</h3>
+            <p>full‑stack e‑commerce • MERN</p>
+          </div>
+          <div class="project-item">
+            <div class="project-icon"><i class="fas fa-brain"></i></div>
+            <h3>CodeAgent AI</h3>
+            <p>Python • FastAPI • GPT</p>
+          </div>
+          <div class="project-item">
+            <div class="project-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>DevMetrics</h3>
+            <p>dashboard • Next.js • TS</p>
+          </div>
+          <div class="project-item">
+            <div class="project-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3>TaskNest</h3>
+            <p>React Native • Firebase</p>
+          </div>
+          <div class="project-item">
+            <div class="project-icon"><i class="fas fa-gamepad"></i></div>
+            <h3>pixel racer</h3>
+            <p>canvas • multiplayer</p>
+          </div>
+          <div class="project-item">
+            <div class="project-icon"><i class="fas fa-cloud-sun"></i></div>
+            <h3>WeatherNode</h3>
+            <p>IoT + express • d3</p>
+          </div>
+        </div>
+        <div style="margin-top: 1.5rem; font-style: italic; opacity: 0.7;">
+          <i class="fas fa-crown" style="color: #f5c542;"></i> 15+ other private projects
+        </div>
+      </div>
+
+      <!-- RIGHT: contact + my discrimination (protest, equality) -->
+      <div class="contact-discrimination">
+
+        <!-- CONTACT block -->
+        <div class="contact-card">
+          <div class="section-header" style="border-left-color: #ffaa5e;">
+            <i class="fas fa-address-card"></i>
+            <span>contact / networks</span>
+          </div>
+          <div class="contact-links">
+            <div class="contact-row">
+              <i class="fas fa-envelope"></i>
+              <span>a.tif@dev.me</span>
+            </div>
+            <div class="contact-row">
+              <i class="fab fa-github"></i>
+              <span>atif-codes</span>
+            </div>
+            <div class="contact-row">
+              <i class="fab fa-linkedin-in"></i>
+              <span>atif · fullstack</span>
+            </div>
+            <div class="contact-row">
+              <i class="fab fa-x-twitter"></i>
+              <span>@atif_dev</span>
+            </div>
+            <div class="contact-row">
+              <i class="fas fa-phone-alt"></i>
+              <span>+1 (415) 867 · 5309</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MY DISCRIMINATION section (stand against discrimination) -->
+        <div class="discrimination-card">
+          <div class="discrimination-header">
+            <i class="fas fa-scale-balanced"></i>
+            <span>my discrimination</span>
+          </div>
+          <div class="discrimination-text">
+            <p><i class="fas fa-quote-left" style="opacity: 0.5; margin-right: 0.3rem;"></i>
+              I <span class="highlight">stand firmly against</span> all forms of discrimination — 
+              whether based on race, gender, orientation, age, or tech stack. 
+              My code and my network are <strong>inclusive & respectful</strong>.
+            </p>
+            <p style="margin-top: 1rem;">
+              <i class="fas fa-hand-fist" style="color: #ff9977;"></i> 
+              I believe in equality, accessibility, and using development for empowerment.
+            </p>
+          </div>
+          <div class="pro-equality">
+            <span>#BlackLivesMatter</span>
+            <span>#TransRights</span>
+            <span>#WomenInTech</span>
+            <span>#NoDiscrimination</span>
+            <span>#InclusiveCoding</span>
+          </div>
+          <div style="margin-top: 1rem; font-size: 0.9rem; background: #1e2540; border-radius: 30px; padding: 0.4rem 1rem; color: #dcd0ff;">
+            <i class="fas fa-ribbon" style="color: #ff9292;"></i>  safe space · zero tolerance for hate
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer: extra pro vibes + background music credit -->
+    <div class="footer-note">
+      <div class="small-credit">
+        <i class="fas fa-star"></i> full stack · coder · creative
+      </div>
+      <div class="live-indicator">
+        <span class="dot"></span>
+        <span>background music: ambient loop (pixabay)</span>
+        <i class="fas fa-music" style="color: #7aa6ff; margin-left: 0.5rem;"></i>
+      </div>
+      <div>
+        <i class="fas fa-copyright"></i> Atif – pro profile
+      </div>
+    </div>
+
+    <!-- tiny note: audio may autoplay if browser allows (included for style) -->
+  </div>
+</body>
+</html>
