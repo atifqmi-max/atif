@@ -1,0 +1,18 @@
+pro-free-gen/
+├── index.html
+├── style.css
+├── script.js
+├── api/
+│   ├── get_stock.php
+│   └── generate.php
+├── admin/
+│   ├── index.php          (login form)
+│   ├── restock.php        (restock interface)
+│   └── logout.php
+├── accounts/
+│   ├── netflix.txt
+│   ├── xbox.txt
+│   ├── minecraft.txt
+│   └── ... (other .txt files)
+└── includes/
+    └── config.php         (database emulation, session start, paths)
