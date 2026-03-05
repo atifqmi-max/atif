@@ -3,499 +3,593 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Atif · full stack dev & coder</title>
-  <!-- Font Awesome 6 (free) for clean icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>Pro Free Gen · member area</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     body {
-      background: linear-gradient(145deg, #0e0f14 0%, #1a1c25 100%);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      color: #eaeef5;
-      line-height: 1.5;
+      background: #0b0e14;
+      color: #e9edf5;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* header */
+    .top-bar {
+      background: #10131c;
+      border-bottom: 1px solid #2a2f3c;
+      padding: 1.2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .logo h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(130deg, #a371f7, #70c8ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.5px;
+    }
+
+    .live-badge {
+      background: #1f2a3a;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid #3e4b5d;
+    }
+
+    .live-dot {
+      width: 12px;
+      height: 12px;
+      background: #3fe87c;
+      border-radius: 20px;
+      box-shadow: 0 0 10px #3fe87c;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } }
+
+    .live-text {
+      font-weight: 500;
+      color: #bcc9e8;
+    }
+
+    .stock-counter {
+      background: #1e2532;
+      padding: 0.4rem 1rem;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      border: 1px solid #3f4a5c;
+    }
+
+    /* main container */
+    .container {
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+      flex: 1;
+      width: 100%;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title span {
+      background: #2d3548;
+      font-size: 1rem;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      color: #b5c8ff;
+    }
+
+    /* generator grid */
+    .gen-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .gen-card {
+      background: #171d28;
+      border-radius: 28px;
+      padding: 1.6rem 1.4rem;
+      border: 1px solid #2b3445;
+      transition: 0.2s;
+      box-shadow: 0 8px 0 #0c0f16;
+    }
+
+    .gen-card:hover {
+      border-color: #5f7bbf;
+      transform: translateY(-3px);
+    }
+
+    .gen-icon {
+      font-size: 2.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .gen-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .stock-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 1.2rem 0 1.6rem;
+      background: #121724;
+      padding: 0.7rem 1rem;
+      border-radius: 60px;
+    }
+
+    .stock-available {
+      background: #293145;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #b9d2ff;
+    }
+
+    .stock-number {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #d0e0ff;
+    }
+
+    .gen-btn {
+      width: 100%;
+      background: #2c3c5c;
+      border: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 0.9rem 0;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.15s;
+      border-bottom: 3px solid #1d2638;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem;
+      gap: 6px;
     }
 
-    /* glass‑card effect */
-    .profile-card {
-      max-width: 1200px;
-      width: 100%;
-      background: rgba(20, 22, 32, 0.75);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(90, 140, 255, 0.18);
-      border-radius: 3rem;
-      box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.08);
-      overflow: hidden;
-      padding: 2.5rem 2.2rem;
+    .gen-btn.active {
+      background: #4c3399;
+      background: linear-gradient(145deg, #5d42b5, #374f9a);
+      border-bottom-color: #1b2352;
     }
 
-    /* ===== HEADER / NAME & TITLE ===== */
-    .top-header {
+    .gen-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      background: #2e3a4e;
+      border-bottom-color: #1f2637;
+    }
+
+    .cooldown-badge {
+      font-size: 0.8rem;
+      background: #111722;
+      padding: 0.3rem 0.7rem;
+      border-radius: 30px;
+      color: #a5c1ff;
+    }
+
+    /* accounts panel */
+    .accounts-panel {
+      background: #131a26;
+      border-radius: 32px;
+      padding: 2rem;
+      border: 1px solid #303c50;
+    }
+
+    .panel-header {
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 2.5rem;
-      border-bottom: 1px dashed rgba(120, 160, 255, 0.3);
-      padding-bottom: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.8rem;
     }
 
-    .name-title h1 {
-      font-size: 3.2rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      background: linear-gradient(130deg, #ffffff, #b2ccff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      line-height: 1.1;
+    .file-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .name-title .badge {
-      display: inline-block;
-      background: #2f3e6b;
-      padding: 0.35rem 1.2rem;
+    .file-tab {
+      background: #1d2838;
+      padding: 0.5rem 1.3rem;
       border-radius: 40px;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       font-weight: 500;
-      color: #d9e6ff;
-      border: 1px solid #4b67a3;
-      margin-top: 0.4rem;
-      backdrop-filter: blur(4px);
-    }
-
-    /* music player — sleek, minimal */
-    .music-area {
-      background: rgba(12, 18, 34, 0.7);
-      border-radius: 60px;
-      padding: 0.5rem 1.2rem 0.5rem 1.8rem;
-      border: 1px solid #2c3c66;
+      color: #aebddb;
+      border: 1px solid #374357;
       display: flex;
       align-items: center;
-      gap: 0.8rem;
-      box-shadow: 0 6px 14px rgba(0, 5, 15, 0.6);
+      gap: 6px;
+      transition: 0.1s;
     }
 
-    .music-icon {
-      font-size: 1.4rem;
-      color: #6ea8fe;
-      animation: subtlePulse 3s infinite ease;
+    .file-tab.active-tab {
+      background: #394e72;
+      color: white;
+      border-color: #6c8cd9;
     }
 
-    .music-area audio {
-      height: 40px;
-      width: 220px;
-      filter: sepia(0.2) brightness(1.2) contrast(1.1);
-      border-radius: 30px;
+    .restock-info {
+      color: #aac3ff;
+      background: #1b2332;
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
     }
 
-    @keyframes subtlePulse {
-      0% { opacity: 0.7; text-shadow: 0 0 2px #5f9eff; }
-      50% { opacity: 1; text-shadow: 0 0 10px #3f7eff; }
-      100% { opacity: 0.7; text-shadow: 0 0 2px #5f9eff; }
+    .account-list {
+      background: #0f151f;
+      border-radius: 24px;
+      padding: 1.5rem;
+      border: 1px solid #2b354b;
+      min-height: 200px;
+      font-family: 'Monaco', 'Menlo', monospace;
+      white-space: pre-wrap;
+      word-break: break-all;
+      line-height: 1.6;
+      color: #cfdefa;
+      font-size: 0.95rem;
     }
 
-    /* ===== 2‑COLUMN LAYOUT (about + contact) ===== */
-    .mid-grid {
-      display: grid;
-      grid-template-columns: 2fr 1.2fr;
-      gap: 2rem;
-      margin: 2.2rem 0 2.5rem;
-    }
-
-    /* left: my all making (work / projects) */
-    .works-section {
-      background: rgba(12, 16, 28, 0.5);
-      border-radius: 2rem;
-      padding: 1.8rem 1.8rem 2rem;
-      border: 1px solid #293454;
-      backdrop-filter: blur(8px);
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 1.7rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-      color: #bdd3ff;
-      border-left: 5px solid #4f8cff;
+    .dummy-note {
+      color: #8d9ac0;
+      margin-top: 1rem;
+      font-style: italic;
+      border-left: 4px solid #425479;
       padding-left: 1rem;
     }
 
-    .section-header i {
-      color: #6d9eff;
-    }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 1.4rem;
-    }
-
-    .project-item {
-      background: #181f32;
-      border-radius: 1.5rem;
-      padding: 1.2rem 0.8rem 0.8rem 1.2rem;
-      border: 1px solid #31486c;
-      transition: transform 0.2s, border-color 0.2s;
-      box-shadow: 0 8px 18px -8px #05070c;
-    }
-
-    .project-item:hover {
-      transform: translateY(-5px);
-      border-color: #6f9cff;
-      background: #1f2740;
-    }
-
-    .project-icon {
-      font-size: 2.2rem;
-      background: #253150;
-      width: 50px;
-      height: 50px;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-      color: #9bbaff;
-    }
-
-    .project-item h3 {
-      font-size: 1.2rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      color: white;
-    }
-
-    .project-item p {
-      font-size: 0.85rem;
-      color: #a0b5da;
-      margin-top: 0.3rem;
-    }
-
-    /* right side: contact + discrimination block */
-    .contact-discrimination {
-      display: flex;
-      flex-direction: column;
-      gap: 1.8rem;
-    }
-
-    .contact-card {
-      background: rgba(12, 16, 28, 0.6);
-      border-radius: 2rem;
-      padding: 1.8rem 1.8rem 1.8rem;
-      border: 1px solid #2f3d62;
-      backdrop-filter: blur(8px);
-    }
-
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      margin-top: 1.2rem;
-    }
-
-    .contact-row {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      background: #1c233a;
-      padding: 0.9rem 1.2rem;
-      border-radius: 2rem;
-      border: 1px solid #36486b;
-      transition: 0.15s;
-    }
-
-    .contact-row i {
-      width: 2rem;
-      font-size: 1.5rem;
-      color: #6d9eff;
+    /* footer */
+    .footer {
       text-align: center;
-    }
-
-    .contact-row span {
-      font-size: 1.05rem;
-      font-weight: 400;
-      color: #d3e0fd;
-    }
-
-    .contact-row:hover {
-      background: #252f4a;
-      border-color: #5f85d6;
-    }
-
-    /* MY DISCRIMINATION section — bold & pro */
-    .discrimination-card {
-      background: #181f33;
-      border-radius: 2rem;
-      padding: 1.8rem 2rem;
-      border: 1px solid #4d6190;
-      box-shadow: 0 0 0 1px rgba(255, 140, 140, 0.2), 0 12px 30px -15px black;
-    }
-
-    .discrimination-header {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-size: 1.6rem;
-      font-weight: 600;
-      color: #ffb9b9;
-      margin-bottom: 1.2rem;
-    }
-
-    .discrimination-header i {
-      color: #ff7b7b;
-    }
-
-    .discrimination-text {
-      background: #101524;
+      margin-top: 3rem;
+      color: #5b6a85;
+      border-top: 1px solid #212837;
       padding: 1.5rem;
-      border-radius: 1.5rem;
-      border-left: 6px solid #ff6b6b;
     }
 
-    .discrimination-text p {
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      color: #f0e6ff;
-    }
-
-    .discrimination-text .highlight {
-      color: #ffa7a7;
-      font-weight: 500;
-    }
-
-    .pro-equality {
-      display: flex;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-      margin-top: 1.2rem;
-    }
-
-    .pro-equality span {
-      background: #2b2f4a;
-      padding: 0.4rem 1.4rem;
-      border-radius: 40px;
-      font-size: 0.9rem;
-      border: 1px solid #ff9370;
-      color: #ffc7b0;
-    }
-
-    /* ===== footer / extra music note & vibe ===== */
-    .footer-note {
-      margin-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.95rem;
-      color: #8fa3ce;
-      border-top: 1px dashed #31476b;
-      padding-top: 1.5rem;
-    }
-
-    .footer-note .small-credit i {
-      color: #6086d6;
-      margin-right: 0.3rem;
-    }
-
-    .live-indicator {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      background: #5effa0;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #29ff8c;
-    }
-
-    /* responsiveness */
-    @media (max-width: 800px) {
-      .mid-grid {
-        grid-template-columns: 1fr;
-      }
-      .top-header {
-        flex-direction: column;
-        align-items: start;
-        gap: 1.2rem;
-      }
-      .music-area {
-        width: 100%;
-        justify-content: space-between;
-      }
-      .music-area audio {
-        width: 180px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .profile-card { padding: 1.8rem; }
-      .name-title h1 { font-size: 2.5rem; }
+    .flash-message {
+      background: #16273f;
+      border-radius: 50px;
+      padding: 0.7rem 1.5rem;
+      border: 1px solid #527ac2;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
-  <div class="profile-card">
-
-    <!-- header: Name + background music (embedded) -->
-    <div class="top-header">
-      <div class="name-title">
-        <h1>Atif</h1>
-        <span class="badge"><i class="fas fa-code" style="margin-right: 0.4rem;"></i>Full Stack Developer & Coder</span>
+  <header class="top-bar">
+    <div class="logo">
+      <h1>⚡ Pro Free Gen</h1>
+    </div>
+    <div style="display: flex; gap: 15px; align-items: center;">
+      <div class="live-badge">
+        <span class="live-dot"></span>
+        <span class="live-text">LIVE · auto‑restock</span>
       </div>
-      <div class="music-area">
-        <i class="fas fa-headphones-alt music-icon"></i>
-        <!-- background music (silent/placeholder, but functional) 
-             using a freely distributable ambient loop from pixabay (loop, low profile) -->
-        <audio controls loop autoplay>
-          <source src="https://cdn.pixabay.com/audio/2024/02/04/audio_5f3b22cf2c.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
-        <i class="fas fa-volume-up" style="color: #5080dd; font-size: 1.2rem;"></i>
+      <div class="stock-counter" id="globalStockDisplay">accounts: 47</div>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- all generators section -->
+    <div class="section-title">
+      📦 generator categories <span>click to generate</span>
+    </div>
+    <div class="gen-grid" id="generatorGrid"></div>
+
+    <!-- accounts panel (simulated .txt files) -->
+    <div class="accounts-panel">
+      <div class="panel-header">
+        <div class="file-tabs" id="fileTabsContainer">
+          <!-- dynamic file tabs injected via js -->
+        </div>
+        <div class="restock-info" id="autoRestockBadge">
+          🔄 restock every 45s (simulated)
+        </div>
+      </div>
+
+      <!-- account list display (like netflix.txt content) -->
+      <div class="account-list" id="accountListDisplay">
+        [select a file tab to view accounts]
+      </div>
+      <div class="dummy-note" id="liveNote">
+        ⚡ email:pass format · auto-generated · stock live
       </div>
     </div>
-
-    <!-- main grid: my all making (projects) + contact & discrimination -->
-    <div class="mid-grid">
-      <!-- LEFT — "my all making website" = my works / builds -->
-      <div class="works-section">
-        <div class="section-header">
-          <i class="fas fa-laptop-code"></i>
-          <span>my all making</span>
-        </div>
-        <div class="project-grid">
-          <div class="project-item">
-            <div class="project-icon"><i class="fas fa-cart-shopping"></i></div>
-            <h3>ShopFlow</h3>
-            <p>full‑stack e‑commerce • MERN</p>
-          </div>
-          <div class="project-item">
-            <div class="project-icon"><i class="fas fa-brain"></i></div>
-            <h3>CodeAgent AI</h3>
-            <p>Python • FastAPI • GPT</p>
-          </div>
-          <div class="project-item">
-            <div class="project-icon"><i class="fas fa-chart-line"></i></div>
-            <h3>DevMetrics</h3>
-            <p>dashboard • Next.js • TS</p>
-          </div>
-          <div class="project-item">
-            <div class="project-icon"><i class="fas fa-mobile-alt"></i></div>
-            <h3>TaskNest</h3>
-            <p>React Native • Firebase</p>
-          </div>
-          <div class="project-item">
-            <div class="project-icon"><i class="fas fa-gamepad"></i></div>
-            <h3>pixel racer</h3>
-            <p>canvas • multiplayer</p>
-          </div>
-          <div class="project-item">
-            <div class="project-icon"><i class="fas fa-cloud-sun"></i></div>
-            <h3>WeatherNode</h3>
-            <p>IoT + express • d3</p>
-          </div>
-        </div>
-        <div style="margin-top: 1.5rem; font-style: italic; opacity: 0.7;">
-          <i class="fas fa-crown" style="color: #f5c542;"></i> 15+ other private projects
-        </div>
-      </div>
-
-      <!-- RIGHT: contact + my discrimination (protest, equality) -->
-      <div class="contact-discrimination">
-
-        <!-- CONTACT block -->
-        <div class="contact-card">
-          <div class="section-header" style="border-left-color: #ffaa5e;">
-            <i class="fas fa-address-card"></i>
-            <span>contact / networks</span>
-          </div>
-          <div class="contact-links">
-            <div class="contact-row">
-              <i class="fas fa-envelope"></i>
-              <span>a.tif@dev.me</span>
-            </div>
-            <div class="contact-row">
-              <i class="fab fa-github"></i>
-              <span>atif-codes</span>
-            </div>
-            <div class="contact-row">
-              <i class="fab fa-linkedin-in"></i>
-              <span>atif · fullstack</span>
-            </div>
-            <div class="contact-row">
-              <i class="fab fa-x-twitter"></i>
-              <span>@atif_dev</span>
-            </div>
-            <div class="contact-row">
-              <i class="fas fa-phone-alt"></i>
-              <span>+1 (415) 867 · 5309</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- MY DISCRIMINATION section (stand against discrimination) -->
-        <div class="discrimination-card">
-          <div class="discrimination-header">
-            <i class="fas fa-scale-balanced"></i>
-            <span>my discrimination</span>
-          </div>
-          <div class="discrimination-text">
-            <p><i class="fas fa-quote-left" style="opacity: 0.5; margin-right: 0.3rem;"></i>
-              I <span class="highlight">stand firmly against</span> all forms of discrimination — 
-              whether based on race, gender, orientation, age, or tech stack. 
-              My code and my network are <strong>inclusive & respectful</strong>.
-            </p>
-            <p style="margin-top: 1rem;">
-              <i class="fas fa-hand-fist" style="color: #ff9977;"></i> 
-              I believe in equality, accessibility, and using development for empowerment.
-            </p>
-          </div>
-          <div class="pro-equality">
-            <span>#BlackLivesMatter</span>
-            <span>#TransRights</span>
-            <span>#WomenInTech</span>
-            <span>#NoDiscrimination</span>
-            <span>#InclusiveCoding</span>
-          </div>
-          <div style="margin-top: 1rem; font-size: 0.9rem; background: #1e2540; border-radius: 30px; padding: 0.4rem 1rem; color: #dcd0ff;">
-            <i class="fas fa-ribbon" style="color: #ff9292;"></i>  safe space · zero tolerance for hate
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- footer: extra pro vibes + background music credit -->
-    <div class="footer-note">
-      <div class="small-credit">
-        <i class="fas fa-star"></i> full stack · coder · creative
-      </div>
-      <div class="live-indicator">
-        <span class="dot"></span>
-        <span>background music: ambient loop (pixabay)</span>
-        <i class="fas fa-music" style="color: #7aa6ff; margin-left: 0.5rem;"></i>
-      </div>
-      <div>
-        <i class="fas fa-copyright"></i> Atif – pro profile
-      </div>
-    </div>
-
-    <!-- tiny note: audio may autoplay if browser allows (included for style) -->
   </div>
+
+  <footer class="footer">
+    <span class="flash-message">✨ pro free gen · 10 min cooldown per account · member area</span>
+  </footer>
+
+  <script>
+    (function() {
+      // ------- SIMULATED AUTO RESTOCK FILES (like netflix.txt, xbox.txt, minecraft.txt) -------
+      // each file is an array of "email:pass" strings, restock simulates pushing new lines.
+      const ACCOUNT_FILES = {
+        netflix:   [ "family@tv.com:flix2024", "stream@home.com:pass123", "hd@watch.com:netflix1", "movie@time.com:hdpass", "series@binge.com:test42" ],
+        xbox:      [ "gamer@live.com:xbox360", "halo@master.com:chief117", "forza@race.com:drivatars", "gamepass@outlook.com:passlive", "xbox@play.com:gold22" ],
+        minecraft: [ "craft@block.com:diamond", "steve@pickaxe.net:creeper", "enderman@ender.com:pearl12", "nether@fortress.com:blaze99", "build@craft.com:redstone" ],
+        spotify:   [ "premium@music.com:family1", "playlist@spot.com:dailyMix", "podcast@audio.com:acct2023", "discover@weekly.com:track99", "dance@hit.com:party" ],
+        disney:    [ "starwars@force.com:jedi", "marvel@avengers.com:thanos", "pixar@lightyear.com:toyStory", "frozen@arenda.com:elsa", "mickey@mouse.com:disney123" ]
+      };
+
+      // ----- stock counters (dynamic) - we'll sync from files length
+      let stock = {
+        netflix: ACCOUNT_FILES.netflix.length,
+        xbox: ACCOUNT_FILES.xbox.length,
+        minecraft: ACCOUNT_FILES.minecraft.length,
+        spotify: ACCOUNT_FILES.spotify.length,
+        disney: ACCOUNT_FILES.disney.length
+      };
+
+      // ----- cooldown tracker per user (member) - 10 minutes (600 seconds)
+      const cooldowns = {
+        netflix: 0,
+        xbox: 0,
+        minecraft: 0,
+        spotify: 0,
+        disney: 0
+      };
+      const COOLDOWN_SEC = 600; // 10 min = 600 sec
+
+      // last selected file tab
+      let currentFile = 'netflix';   // default
+
+      // helper to update global stock display
+      function updateGlobalStock() {
+        const total = Object.values(stock).reduce((a, b) => a + b, 0);
+        document.getElementById('globalStockDisplay').innerText = `accounts: ${total}`;
+      }
+
+      // render generator cards
+      const categories = [
+        { id: 'netflix', name: 'NETFLIX', icon: '🎬', bg: '#b1060e' },
+        { id: 'xbox', name: 'XBOX', icon: '🎮', bg: '#107c10' },
+        { id: 'minecraft', name: 'MINECRAFT', icon: '⛏️', bg: '#5a2d0c' },
+        { id: 'spotify', name: 'SPOTIFY', icon: '🎧', bg: '#1db954' },
+        { id: 'disney', name: 'DISNEY+', icon: '✨', bg: '#113c7a' }
+      ];
+
+      function renderGenerators() {
+        const grid = document.getElementById('generatorGrid');
+        grid.innerHTML = '';
+        categories.forEach(cat => {
+          const id = cat.id;
+          const cooldownActive = cooldowns[id] > 0;
+          const card = document.createElement('div');
+          card.className = 'gen-card';
+          card.innerHTML = `
+            <div class="gen-icon">${cat.icon}</div>
+            <div class="gen-name">${cat.name}</div>
+            <div class="stock-row">
+              <span class="stock-available">📊 STOCK</span>
+              <span class="stock-number" id="stock-${id}">${stock[id]}</span>
+            </div>
+            <button class="gen-btn ${!cooldownActive ? 'active' : ''}" data-gen="${id}" id="btn-${id}" ${cooldownActive ? 'disabled' : ''}>
+              ⚡ GENERATE
+              ${cooldownActive ? `<span class="cooldown-badge" id="cd-${id}">${cooldowns[id]}s</span>` : ''}
+            </button>
+          `;
+          grid.appendChild(card);
+        });
+        updateGlobalStock();
+      }
+
+      // update stock numbers in UI
+      function refreshStockUI() {
+        categories.forEach(c => {
+          const el = document.getElementById(`stock-${c.id}`);
+          if (el) el.innerText = stock[c.id];
+        });
+        updateGlobalStock();
+      }
+
+      // update cooldown badges and buttons
+      function refreshCooldownUI() {
+        categories.forEach(c => {
+          const btn = document.getElementById(`btn-${c.id}`);
+          const cdSpan = document.getElementById(`cd-${c.id}`);
+          if (!btn) return;
+          if (cooldowns[c.id] > 0) {
+            btn.disabled = true;
+            if (!cdSpan) {
+              // create badge if missing
+              const badge = document.createElement('span');
+              badge.className = 'cooldown-badge';
+              badge.id = `cd-${c.id}`;
+              badge.innerText = `${cooldowns[c.id]}s`;
+              btn.appendChild(badge);
+            } else {
+              cdSpan.innerText = `${cooldowns[c.id]}s`;
+            }
+            btn.classList.remove('active');
+          } else {
+            btn.disabled = false;
+            btn.classList.add('active');
+            if (cdSpan) cdSpan.remove();
+          }
+        });
+      }
+
+      // render file tabs (netflix.txt, xbox.txt etc)
+      function renderFileTabs() {
+        const container = document.getElementById('fileTabsContainer');
+        container.innerHTML = '';
+        const fileKeys = Object.keys(ACCOUNT_FILES);
+        fileKeys.forEach(key => {
+          const tab = document.createElement('span');
+          tab.className = `file-tab ${currentFile === key ? 'active-tab' : ''}`;
+          tab.setAttribute('data-file', key);
+          tab.innerHTML = `📄 ${key}.txt (${ACCOUNT_FILES[key].length})`;
+          tab.addEventListener('click', (e) => {
+            currentFile = key;
+            renderFileTabs();     // re-render active
+            updateAccountDisplay();
+          });
+          container.appendChild(tab);
+        });
+      }
+
+      // display content of selected account file
+      function updateAccountDisplay() {
+        const listDiv = document.getElementById('accountListDisplay');
+        const lines = ACCOUNT_FILES[currentFile] || [];
+        if (lines.length === 0) {
+          listDiv.innerText = `📭 ${currentFile}.txt is empty — restock incoming soon.`;
+          return;
+        }
+        // show each line, like a text file
+        let content = `===== ${currentFile}.txt ===== (${lines.length} live)\n`;
+        lines.forEach((line, idx) => {
+          content += `${idx+1}. ${line}\n`;
+        });
+        listDiv.innerText = content;
+      }
+
+      // ----- simulate restock (automatic file like netflix.txt and others)
+      function restockFiles() {
+        // for each file, sometimes push a fresh random email:pass
+        Object.keys(ACCOUNT_FILES).forEach(key => {
+          const arr = ACCOUNT_FILES[key];
+          // simulate restock: add new line with random name
+          const domains = ['gmail.com', 'outlook.com', 'yahoo.com', 'proton.me'];
+          const randName = `user${Math.floor(Math.random()*9000+1000)}`;
+          const randDomain = domains[Math.floor(Math.random() * domains.length)];
+          const newPass = Math.random().toString(36).substring(2, 10);
+          const newLine = `${randName}@${randDomain}:${newPass}`;
+          arr.push(newLine);
+          // keep reasonable size (max 12 lines for demo)
+          if (arr.length > 12) arr.shift();
+
+          // update stock counter
+          stock[key] = arr.length;
+        });
+        // also add a special line to netflix for demo flavor
+        // update UI
+        refreshStockUI();
+        renderFileTabs();          // update tab counts
+        updateAccountDisplay();    // refresh shown file
+        document.getElementById('autoRestockBadge').innerHTML = '🔄 restock +1 line just now (simulated)';
+        setTimeout(() => {
+          document.getElementById('autoRestockBadge').innerHTML = '🔄 restock every 45s (simulated)';
+        }, 2000);
+      }
+
+      // ---- generate action ----
+      function handleGenerate(genId) {
+        // check cooldown
+        if (cooldowns[genId] > 0) return;
+
+        // check stock
+        if (stock[genId] <= 0) {
+          alert(`❌ No ${genId} accounts left. Wait for restock.`);
+          return;
+        }
+
+        // "generate" = take first account from corresponding file
+        const fileArray = ACCOUNT_FILES[genId];
+        if (!fileArray || fileArray.length === 0) {
+          alert('stock temporary empty, try later');
+          return;
+        }
+
+        // get the first account (simulate generation)
+        const generatedAccount = fileArray.shift();   // remove from array
+        // update stock counter
+        stock[genId] = fileArray.length;
+
+        // set cooldown
+        cooldowns[genId] = COOLDOWN_SEC;
+
+        // show generated account in a friendly alert (simulate gen popup)
+        alert(`✅ ${genId.toUpperCase()} ACCOUNT GENERATED!\n\n${generatedAccount}\n\n(Cooldown 10min activated)`);
+
+        // update UI stock numbers & cooldown display
+        refreshStockUI();
+        refreshCooldownUI();
+
+        // if current open file is same as generated, update display
+        if (currentFile === genId) {
+          updateAccountDisplay();
+        }
+        renderFileTabs();  // update counts on tabs
+
+        // start cooldown timer for that specific gen
+        const interval = setInterval(() => {
+          if (cooldowns[genId] > 0) {
+            cooldowns[genId] -= 1;
+            refreshCooldownUI();
+          } else {
+            clearInterval(interval);
+            refreshCooldownUI();
+          }
+        }, 1000);
+      }
+
+      // ---- setup event listeners (delegation for generate buttons) ----
+      document.getElementById('generatorGrid').addEventListener('click', (e) => {
+        const btn = e.target.closest('.gen-btn');
+        if (!btn) return;
+        if (btn.disabled) return;
+        const genId = btn.getAttribute('data-gen');
+        if (genId) handleGenerate(genId);
+      });
+
+      // ---- initial render & auto restock (every 45 seconds) ----
+      renderGenerators();
+      renderFileTabs();
+      updateAccountDisplay();
+      refreshCooldownUI();
+      updateGlobalStock();
+
+      // simulate file restock (like automatic restock)
+      setInterval(() => {
+        restockFiles();
+      }, 45000); // 45 seconds
+
+      // Also ensure cooldown persists no timer for cooldowns already started.
+      // but initial cooldowns are zero. we also need to handle page reload, but cooldown resets (simulated)
+      // for demo we add a manual extra restock after 10 seconds
+      setTimeout(() => {
+        restockFiles();   // immediate restock to show activity
+      }, 5000);
+
+      // bonus: if user wants to see "automatic file for account restock like netflix.txt" — we have it.
+    })();
+  </script>
 </body>
 </html>
